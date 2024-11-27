@@ -2,7 +2,7 @@ import math
 import random
 
 t = 0 # Initialize time
-# dt = 0.1 # Calculate values every 0.1 seconds
+dt = 0.1 # Calculate values every 0.1 seconds
 
 cars = [] # Cars array of type IDM
 
@@ -23,15 +23,15 @@ class IDM:
             self.truck = False
         self.dvdt = 0
 
-    def calcAcc(self, dv, xl, l, dt, d=4):
+    def calcAcc(self, dv, xl, l, d=4):
         s_star = self.s0 + max(0, self.v*self.T + (self.v*dv)/(2*math.sqrt(self.a*self.b)))
         self.dvdt = self.a*(1-math.pow(self.v/self.v0, d)-math.pow(s_star/self.s,2))
         dsdt = -1 * dv
         # xl = position of car in front; l = length of car in front
-        self.updateVals(xl, l, dt)
+        self.updateVals(xl, l)
         return self.dvdt
     
-    def updateVals(self, xl, l, dt):
+    def updateVals(self, xl, l):
         if self.dvdt*dt < 0:
             self.x = self.x - 0.5 * math.pow(self.v, 2) / self.dvdt
             self.v = 0
@@ -61,7 +61,7 @@ def start_simulator():
             t_headway += 1
             s_min += 2
             deceleration *= 0.75
-            vmax = speed_limit * 0.8 
+            vmax = speed_limit * 0.8
         else:
             vmax = speed_limit * 1.1
             vmax += aggressiveness * 3
@@ -83,21 +83,20 @@ def print_vehicle(i, car):
 
 print_vehicles()
 
-def run_simulator(t, dt):
+def run_simulator(t):
     # t += dt
     global cars
-    cars = sorted(cars, key=lambda car: car.x)
+    cars.sort(key=lambda car: car.x)
     print(f"Simulator Time = {t:.1f}s")
     for i in range(len(cars)):
         car = cars[i]
         if i == len(cars) - 1:
-            dvdt = car.calcAcc(car.v, car.x+2000, 5, dt)
-            # print_vehicle(i, car);
+            dvdt = car.calcAcc(car.v, car.x+2000, 5)
         else:
             following_car = cars[i+1]
             dv = car.v - following_car.v
-            dvdt = car.calcAcc(dv, following_car.x, following_car.L, dt)
-            # print_vehicle(i, car);
+            dvdt = car.calcAcc(dv, following_car.x, following_car.L)
+        print_vehicle(i, car);
     return cars
 
 
