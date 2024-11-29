@@ -1,5 +1,6 @@
 # IDM With Pygame
 ---
+Source: [https://traffic-simulation.de/info/info_IDM]{https://traffic-simulation.de/info/info_IDM}
 ## Requirements
 - Pygame
 
@@ -9,7 +10,7 @@
 git clone https://github.com/Harish-Chandar/IDM.git
 ```
 
-# To Run
+## To Run
 
 ```
 python main.py [car width] [number of cars]
