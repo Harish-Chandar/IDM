@@ -1,6 +1,6 @@
 # IDM With Pygame
 ---
-Source: [https://traffic-simulation.de/info/info_IDM]{https://traffic-simulation.de/info/info_IDM}
+Source: [https://traffic-simulation.de/info/info_IDM]
 ## Requirements
 - Pygame
 
