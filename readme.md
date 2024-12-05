@@ -3,6 +3,7 @@
 Source: [https://traffic-simulation.de/info/info_IDM]
 ## Requirements
 - Pygame
+- Python 3.12
 
 ## Instructions
 
@@ -15,4 +16,4 @@ git clone https://github.com/Harish-Chandar/IDM.git
 ```
 python main.py [car width] [number of cars]
 ```
-Both should be integers
+Both parameters should be integers
